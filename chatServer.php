@@ -20,7 +20,7 @@ while(true){
         $content = trim($content);
         if (!empty($content)) {
             // 关闭当前请求连接
-            if ($content == 'quite') {
+            if ($content == 'quit') {
                 break;
             }
             echo 'input value: ' .$content . PHP_EOL;
