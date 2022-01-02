@@ -1,0 +1,33 @@
+<html>
+<div align="center">
+    <div><textarea id="chatList" style="height: 50%;width: 50%"></textarea></div>
+    <div>
+        <input type="text" id="content">&nbsp;
+        <button onclick="sendMessage()">send</button>
+    </div></div>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+    var ws = new WebSocket('ws://127.0.0.1:10002');
+    // 连接成功
+    ws.onopen = function(evt){
+        $("#chatList").text('welcome to join in chatting! please input your nickname!' + "\n");
+    };
+    ws.onmessage=function(evt){
+        console.log(evt);
+        $("#chatList").append(evt.data + "\n");
+    };
+/*    ws.onclose=function(e){
+        console.log(  e.code + ' ' + e.reason + ' ' + e.wasClean);
+    };*/
+    ws.onerror = function (e) {
+        console.log(  e.code + ' ' + e.reason + ' ' + e.wasClean);
+    };
+    function sendMessage(){
+        var content = $("#content").val();
+        if (content!==''){
+            ws.send(content);
+            $('#content').val('');
+        }
+    }
+</script>
+</html>
