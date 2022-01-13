@@ -1,0 +1,56 @@
+<html>
+<div align="center">
+    <h3 id="title">Chatting List</h3>
+    <div>
+        <textarea id="contracts" style="height: 50%;width:6%;padding: 1%" disabled="disabled"></textarea>
+        <textarea id="chatList" style="height: 50%;width: 20%;padding:1%" disabled="disabled"></textarea>
+    </div>
+    <div>
+        <input type="text" id="content">&nbsp;
+        <button onClick="sendMessage()">send</button>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+    var ws = new WebSocket('ws://127.0.0.1:2345');
+    window.onload = function () {
+        var nickname = prompt('please input your nickname!', Math.random().toString(32).slice(-6));
+        if (nickname != null && nickname !== '') {
+            ws.onopen = function () {
+                $("#chatList").text('initial success...' + "\n");
+                ws.send('{"nickname":"' + nickname + '"}');
+            };
+            // 心跳
+            setInterval(heartBeat, 55000);
+        }
+        ws.onmessage = function (evt) {
+            var data = JSON.parse(evt.data);
+            $("#chatList").append(data.content + "\n");
+            var contracts = '';
+            for (var i = 0; i < data.contracts.length; i++) {
+                contracts += data.contracts[i] + "\n";
+            }
+            $("#contracts").text(contracts);
+            $("#title").text('Chatting List(' + data.activeConnection + ')');
+        };
+
+        ws.onerror = function (e) {
+            console.log(e.code + ' ' + e.reason + ' ' + e.wasClean);
+        };
+    };
+
+    function sendMessage() {
+        var content = $("#content").val();
+        if (content !== '') {
+            var content = '{"content":"' + content + '"}';
+            ws.send(content);
+            $('#content').val('');
+        }
+    }
+
+    function heartBeat() {
+        document.getElementById("chatList").scrollTop = document.getElementById("chatList").scrollHeight;
+        ws.send('{"heartBeat":"ping"}');
+    }
+</script>
+</html>
