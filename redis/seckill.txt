@@ -1,0 +1,1 @@
+ab -r -n 1200 -c 600 http://127.0.0.1:83/redis/seckill5.php
