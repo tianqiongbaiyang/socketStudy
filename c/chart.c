@@ -2,9 +2,8 @@
 
 int main()
 {
-	int i;
+	int i,j;
 	for(i=0;i<4;i++){
-		int j=0;
 		for(j=0;j<i*2;j++){
 			printf(" ");
 		}
