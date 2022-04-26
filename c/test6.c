@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
+#include <string.h>
+#define NUM_std 5	//定义符号常量学生人数为5
+#define NUM_course 4	//定义符号常量课程门数为4
+#define SUM 100000 //指定符号常量SUM代表100000
 
 int main(int argc, char *argv[]) {
 	/*
@@ -342,6 +346,7 @@ printf("%d = %d + %d\n",n,p,q); //显示结果
 	*/
 	
 	
+	/*
 	//利用下面的公式求pi的近似值，要求累加到最后一项小于10-6为止。
 	//pi/4 约等于1-1/3+1/5-1/7+...
 	int s=1;
@@ -354,6 +359,522 @@ printf("%d = %d + %d\n",n,p,q); //显示结果
 			t=s/n;
 		}
 	pi*=4;
-	printf("pi=%.6f\n",pi);;
+	printf("pi=%.6f\n",pi);
+	*/
+	
+	
+	/*
+	//输入一行字符，统计其中各个大写字母出现的次数。
+	char ch;
+	int num[26]={0},i;
+	while((ch=getchar())!='\n')  //输入字符串，判断统计
+	if(ch>='A' && ch<='Z')  //是否为大写字母
+	num[ch-'A']++;
+	for(i=0;i<26;i++)  //输出结果
+	{
+		if(i%9==0)
+			printf("\n");
+		printf("%c(%d) ",'A'+i,num[i]);
+	}
+	printf("\n");
+	*/
+	
+	
+	/*
+	//将一个二维数组行和列的元素互换，存到另一个二维数组中。
+	int a[2][3]={{1,2,3},{4,5,6}};
+	int b[3][2],i,j;
+	printf("array a:\n");
+	for(i=0;i<=1;i++)
+	{
+		for(j=0;j<=2;j++)
+			{
+				printf("%5d",a[i][j]);
+				b[j][i]=a[i][j];
+			}
+		printf("\n");
+	}
+		    
+    printf("array b:\n");
+	for(i=0;i<=2;i++)
+	{
+		for(j=0;j<=1;j++)
+		{
+			printf("%5d",b[i][j]);
+		}
+		printf("\n");
+	}
+	*/
+	
+	
+	/*
+	//输入多个学生多门课程的成绩，分别求每个学生的平均成绩和每门课程的平均成绩。
+	int i,j;
+	//定义成绩数组，各元素初值为0。+1是用来存放计算结果。
+	float score[NUM_std+1][NUM_course+1]={0};
+	
+	for(i=0;i<NUM_std;i++)
+		for(j=0;j<NUM_course;j++){
+			printf("input the mark of %dth course of %dth student: ",j+1,i+1);
+			scanf("%f",&score[i][j]);	//输入第i个学生的第j门课的成绩
+		}
+	
+	for(i=0;i<NUM_std;i++){
+		for(j=0;j<NUM_course;j++){
+			score[i][NUM_course]+=score[i][j];
+			score[NUM_std][j]+=score[i][j];
+		}
+		score[i][NUM_course]/=NUM_course;	//求第i个人的平均成绩
+		printf("The average mark of the %dth student is %f\n",i+1,score[i][NUM_course]);
+	}
+	
+	for(j=0;j<NUM_course;j++){
+		score[NUM_std][j]/=NUM_std;	//求第j门课的平均成绩
+		printf("The average mark of the %dth course is %f\n",j+1,score[NUM_std][j]);
+	}
+	*/
+	
+	
+	/*
+	//奇数幻方
+	int m,i,j,ni,nj,k,mm,magic[20][20]={0};
+	printf("Enter the number you wanted: ");
+	scanf("%d",&m);
+	if((m<=0)||(m%2)==0) //小于0或为偶数返回
+	{
+		printf("Error in input data.\n");
+		exit(-1);
+	}
+	
+	mm=m*m; //需要填入数据总个数
+	i=0; //第一个值的行位置
+	j=m/2; //第一个值的列位置
+	
+	for(k=1;k<=mm;k++){
+		magic[i][j]=k;     // 填入值
+		
+		if(i==0)  // 最上一行
+		ni=m-1;  //下一个位置在最下一行
+		else
+			ni=i-1;  //前一个值的上一行
+		
+		if(j==m-1) //最右端
+		nj=0;    //下一个位置在最左端
+		else
+			nj=j+1;  //前一个值的下一列
+		
+		//判断右上方方格是否已有数
+		if(magic[ni][nj] == 0)  //右上方无值
+		{
+			i=ni;
+			j=nj;
+		}
+		else //右上方方格已填上数
+		i++;
+	}
+	
+	for(i=0;i<m;i++)  //显示填充的结果
+	{
+		for(j=0;j<m;j++)
+			printf("%4d",magic[i][j]);
+		printf("\n");
+	}
+	*/
 
+
+    /*
+    //求方程实根
+	double a,b,c,disc,x1,x2,p,q;
+	scanf("%lf%lf%lf",&a,&b,&c);
+	
+	disc =b*b-4*a*c;
+	if(disc<0)
+		printf("This equation hasn't real roots\n");
+	else
+	{
+		p=-b/(2.0*a);
+		q=sqrt(disc)/(2.0*a);
+		x1=p+q;
+		x2=p-q;
+		printf("real roots: \nx1=%7.2f\nx2=%7.2f\n",x1,x2);
+	}
+	*/
+	
+	
+	/*
+	//a,b互换
+	float a,b,t;
+	scanf("%f,%f",&a,&b);
+	if(a>b){
+		t=a;
+		a=b;
+		b=t;
+	}
+	printf("%5.2f,%5.2f\n",a,b);
+	*/
+	
+	
+	/*
+	//输入3个数a,b,c并由大到小输出
+	float a,b,c,t;
+	scanf("%f,%f,%f",&a,&b,&c);
+	if(a>b){
+		t=a;
+		a=b;
+		b=t;
+	}
+	if(a>c){
+		t=a;
+		a=c;
+		c=t;
+	}
+	if(b>c)
+	{
+		t=b;
+		b=c;
+		c=t;
+	}
+	printf("%5.2f,%5.2f,%5.2f\n",a,b,c);
+	*/
+	
+
+	/*
+	//小写转大写
+	char ch;
+	scanf("%c",&ch);
+	ch=(ch>='A'&&ch<='Z')?(ch+32):ch;
+	printf("%c\n",ch);
+	*/
+	
+	
+	/*
+	//阶跃函数
+	int x,y;
+	scanf("%d",&x);
+	
+//	if(x<0)
+//		y=-1;
+//	else
+//		if(x==0) y=0;
+//			else y=1;
+	
+	if(x>=0)
+		if(x>0) y=1;
+		else y=0;
+	else y=-1;
+	
+	printf("x=%d,y=%d\n",x,y);
+	*/
+	
+	
+	/*
+	//按评分等级返回分数范围
+	char grade;
+	scanf("%c",&grade);
+	printf("your score:");
+	switch(grade)
+	{
+		case 'A':	printf("85~100\n"); break;
+		case 'B':	printf("70~84\n"); break;
+		case 'C': 	printf("60~69\n"); break;
+		case 'D':	printf("<60\n"); break;
+		default: printf("enter data error!\n");
+	}
+	*/
+	
+	/*
+	//处理菜单命令
+	void action1(int,int),action2(int,int);	//函数声明
+	char ch;
+	int a=15,b=23;
+	ch =getchar();
+	switch(ch)
+	{
+		case 'a':
+		case 'A':	action1(a,b); break;	//调用action1函数，执行A操作
+		case 'b':
+		case 'B':	action2(a,b); break;	//调用action2函数，执行B操作
+		default:	putchar('\a');	//如果输入其他字符，发出警告
+	}
+	*/
+	
+	
+	/*
+	int year;
+	printf("enter year:");
+	scanf("%d",&year);
+	
+	if((year%4==0 && year%100!=0) || (year%400==0))
+		{
+			printf("%d is a leap year.\n",year);
+		} else {
+			printf("%d is not a leap year.\n",year);
+		}
+	*/
+	
+	
+	/*
+	//求ax*x+bx+c=0方程的解
+	double a,b,c,disc,x1,x2,realpart,imagpart;
+	scanf("%lf,%lf,%lf",&a,&b,&c);
+	printf("The equation ");
+	
+	if(fabs(a)<=1e-6)
+		printf("is not a quadratic\n");
+	else{
+		disc=b*b-4*a*c;
+		if(fabs(disc)<=1e-6)
+			printf("has two equal roots:%8.4f\n",-b/(2*a));
+		else
+			if(disc>1e-6){
+				x1=(-b+sqrt(disc))/(2*a);
+				x2=(-b-sqrt(disc))/(2*a);
+				printf("has distinct real roots:%8.4f and %8.4f\n",x1,x2);
+			}else{
+				realpart=-b/(2*a);	//realpart是复根的实部
+				imagpart=sqrt(-disc)/(2*a);	//imagpart是复根的虚部
+				printf(" has complex roots:\n");
+				printf("%8.4f+%8.4fi\n",realpart,imagpart);	//输出一个复数
+				printf("%8.4f-%8.4fi\n",realpart,imagpart);	//输出另一个复数
+				
+			}
+	}
+	*/
+	
+	
+	
+	/*
+	//计算总费用
+	int c,s;
+	float p,w,d,f;
+	printf("please enter price,weight,distance:");	//提示输入数据
+	scanf("%f,%f,%d",&p,&w,&s);	//输入单价、重量、距离
+	
+	if(s>=3000) c=12;	//3000km以上为同一折扣
+	else c=s/250;
+	
+	switch(c)
+	{
+		case 0: d=0; break;	//c=0,代表250km以下，折扣d=0
+		case 1: d=2; break;	//c=1,代表250～500km以下，折扣d=2%
+		case 2:
+		case 3: d=5; break;	//c=2和3，代表500～1000km，折扣d=5%
+		case 4:
+		case 5:
+		case 6:
+		case 7: d=8; break; //c=4~7,代表1000～2000km，折扣d=8%
+		case 8:
+		case 9:
+		case 10:
+		case 11: d=10; break; //c=8~11,代表2000～3000km，折扣d=10%
+		case 12: d=15; break; //c12，代表3000km以上，折扣d=15%
+	}
+	f=p*w*s*(1-d/100);	//计算总运费
+	printf("freight=%10.2f\n",f);	//输出总运费，取两位小数
+	*/
+	
+	
+	/*
+	//1000中捐款，总数达到10万元时停止，并统计捐款人数及平均每人捐款数
+	float amount,aver,total;
+	int i;
+	for(i=1,total=0;i<=1000;i++){
+		printf("please enter amount:");
+		scanf("%f",&amount);
+		total=total+amount;
+		if(total>=SUM) break;
+	}
+	aver=total/i;
+	printf("num=%d\naver=%10.2f\n",i,aver);
+	*/
+	
+	
+	/*
+	//输出100～200的不能被3整除的数。
+	int n;
+	for(n=100;n<=200;n++)
+	{
+		if(n%3==0){
+			continue;
+		}
+		printf(" %d",n);
+	}
+	printf("\n");
+	*/
+	
+	
+	/*
+	//4*5矩阵
+	int i,j,n=0;
+	for(i=1;i<=4;i++)
+	{
+		for(j=1;j<=5;j++,n++){	//n用来累计输出数据的个数
+			if(n%5==0) printf("\n");
+			printf("%d\t",i*j);	//控制在输出5个数据后换行
+		}
+	}
+	printf("\n");
+	*/
+	
+	
+	/*
+	//斐波那契数列。例如：1，1，2，3，5，8，13,...。输出40个月的兔子数。
+//	int f1=1,f2=1,f3;
+//	int i;
+//	printf("%12d\n%12d\n",f1,f2);
+//	for(i=1;i<=38;i++)
+//	{
+//		f3=f1+f2;
+//		printf("%12d\n",f3);
+//		f1=f2;
+//		f2=f3;
+//	}
+	
+//	int f1=1,f2=1;
+//	int i;
+//	for(i=1;i<=20;i++) //每个循环中输出2个月的数据，故循环20次即可
+//	{
+//		printf("%12d %12d ",f1,f2); //输出已知的两个月的兔子数
+//		if(i%2==0) printf("\n");
+//		f1=f1+f2; //计算出下一个月的兔子数，并存放在f1中
+//		f2=f2+f1; //计算出下两个月的兔子数，并存放在f2中
+//	}
+	
+	//只输出20个月的兔子数
+	int i;
+	int f[20]={1,1}; //对最前面两个元素f[0]和f[1]赋初值1
+	for(i=2;i<20;i++){
+		f[i]=f[i-2]+f[i-1]; //先后求出f[2]~f[9]的值
+	}
+	for(i=0;i<20;i++){
+		if(i%5==0) printf("\n"); //控制每输出5个数后换行
+		printf("%12d",f[i]);		//输出一个数
+	}
+	printf("\n");
+	*/
+	
+	
+	/*
+	//译密码
+	char c;
+	
+//	c=getchar();	//输入一个字符给字符变量c
+//	while(c!='\n')	//检查c的值是否为换行符'\n'
+//	{
+//		if((c>='a'&&c<='z')||(c>='A'&&c<='Z'))	//c如果是字母
+//		{
+//			if(c>='W'&&c<='Z'||c>='w'&&c<='z') c=c-22;	//如果是26个字母中最后4个字母之一就使c-22
+//			else c=c+4;	//如果是前面22个字母之一，就使c加4，即变成其后第4个字母
+//		}
+//		printf("%c",c);	//输出已改变的字符
+//		c=getchar();	//再输入下一个字符给字符变量c
+//	}
+	
+	while((c=getchar())!='\n')  //输入一个字符给字符变量c并检查其值是否是换行符
+	{
+		if((c>='A'&&c<='Z')||(c>='a'&&c<='z')) //c如果是字母
+		{
+			c=c+4;	//只要是字母，都先加4
+			if(c>'Z' && c<='Z'+4 ||c>'z')  //如果是26个字母中最后4个字母之一。条件必须加c<='Z'+4，是因为小写字母都大于>'Z'
+				c=c-26;	//c的值改变为26个字母中最前面的4个字母中对应的字母
+		}
+		printf("%c",c);	//输出已改变的字符
+	}
+	
+	printf("\n");
+	*/
+	
+	
+	/*
+	//冒泡排序
+	int a[10];
+	int i,j,t;
+	printf("input 10 numbers :\n");
+	for(i=0;i<10;i++)
+		scanf("%d",&a[i]);
+	printf("\n");
+	
+	for(j=0;j<9;j++) //进行9次循环，实现9趟比较
+	for(i=0;i<9-j;i++) //在每一趟中进行9-j次比较
+	if(a[i]>a[i+1]){  //相邻两个数比较
+		t=a[i];
+		a[i]=a[i+1];
+		a[i+1]=t;
+	}
+	printf("the sorted numbers :\n");
+	
+	for(i=0;i<10;i++)
+		printf("%d ",a[i]);
+	printf("\n");
+	*/
+	
+	
+	/*
+	//求数组最大元素值，并返回行列号
+	int i,j,row=0,column=0,max;
+	int a[3][4]={{1,2,3,4},{9,8,7,6},{-10,10,-5,2}};	//定义数组并赋初值
+	
+	max =a[0][0]; //先认为a[0][0]最大
+	for(i=0;i<=2;i++)
+		for(j=0;j<=3;j++)
+			if(a[i][j]>max){		//如果某元素大于max，就取代max的原值
+				max=a[i][j];
+				row=i;	//记下此元素的行号
+				column=j;	//记下此元素的列号
+			}
+	printf("max=%d\nrow=%d\ncolumn=%d\n",max,row,column);
+	*/
+	
+	
+	/*
+	//输出字符串
+	char c[15]={'I',' ','a','m',' ','a', ' ', 's','t','u','d','e','n','t','.'};
+	int i;
+	for(i=0;i<15;i++)
+		printf("%c",c[i]);
+	printf("\n");
+	*/
+	
+	
+	/*
+	//输出菱形图
+	char diamond[][5]={{' ',' ','*'},{' ','*',' ','*'},{'*',' ',' ',' ','*'},{' ','*',' ','*'},{' ',' ','*'}};
+	int i,j;
+	for(i=0;i<5;i++)
+	{
+		for(j=0;j<5;j++){
+			printf("%c",diamond[i][j]);
+		}
+		printf("\n");
+	}
+	*/
+	
+	
+	//输入一行字符，统计其中有多少个单词，单词之间用空格分隔开。
+	char string[81];
+	int i,num=0,word=0;
+	char c;
+	
+	gets(string); 	//输入一个字符串给字符数组string
+	for(i=0;(c=string[i])!='\0';i++)	//只要字符不是'\0'就继续执行循环
+		if(c==' ') word=0; 	//如果是空格字符，使word置0
+		else if(word==0) 	//如果不是空格字符且word原值为0
+		{
+			word=1;	//使word置1
+			num++; //num累加1，表示增加一个单词
+		}
+	printf("There are %d words in this line.\n",num);	//输出单词数
+	
+	
+	return 0;
+}
+
+void action1(int x,int y)  //执行加法的函数
+{
+	printf("x+y=%d\n",x+y);
+}
+
+void action2(int x,int y)	//执行乘法的函数
+{
+	printf("x*y=%d\n",x*y);
 }
