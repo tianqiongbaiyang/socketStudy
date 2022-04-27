@@ -850,6 +850,7 @@ printf("%d = %d + %d\n",n,p,q); //显示结果
 	*/
 	
 	
+	/*
 	//输入一行字符，统计其中有多少个单词，单词之间用空格分隔开。
 	char string[81];
 	int i,num=0,word=0;
@@ -864,6 +865,25 @@ printf("%d = %d + %d\n",n,p,q); //显示结果
 			num++; //num累加1，表示增加一个单词
 		}
 	printf("There are %d words in this line.\n",num);	//输出单词数
+	*/
+	
+	
+	char str[3][20];	//定义二维字符数组
+	char string[20];	//定义一维字符数组，作为交换字符串时的临时字符数组
+	int i;
+	
+	for(i=0;i<3;i++)
+		gets(str[i]);	//读入3个字符串，分别给str[0],str[1],str[2]
+	
+	if(strcmp(str[0],str[1])>0)	//若str[0]大于str[1]
+		strcpy(string,str[0]);	//把str[0]的字符串赋给字符数组string
+	else						//若str[0]小于等于str[1]
+		strcpy(string,str[1]);	//把str[1]的字符串赋给字符数组string
+		
+	if(strcmp(str[2],string)>0)	//若str[2]大于string
+		strcpy(string,str[2]);	//把str[2]的字符串赋给字符数组string
+	printf("\nthe largest string is: \n%s\n",string);	//输出string
+		
 	
 	
 	return 0;
