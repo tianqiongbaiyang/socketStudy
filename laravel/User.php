@@ -1,10 +1,12 @@
 <?php
 
+// 定义写日志的接口规范
 interface Log
 {
     public function write();
 }
 
+// 文件记录日志
 class FileLog implements Log
 {
     public function write()
@@ -13,6 +15,7 @@ class FileLog implements Log
     }
 }
 
+// 数据库记录日志
 class DatabaseLog implements Log
 {
     public function write()
@@ -21,6 +24,7 @@ class DatabaseLog implements Log
     }
 }
 
+// 程序操作类
 /*class User
 {
     protected $fileLog;
@@ -32,7 +36,8 @@ class DatabaseLog implements Log
 
     public function login()
     {
-        echo 'login success...';
+        // 登录成功，记录登录日志
+        echo 'login success...'."\n";
         $this->fileLog->write();
     }
 }
@@ -51,7 +56,7 @@ $user->login();*/
 
     public function login()
     {
-        echo 'login success...';
+        echo 'login success...'."\n";
         $this->log->write();
     }
 }
@@ -70,7 +75,9 @@ $user->login();*/
 $user = make('User');
 $user->login();*/
 
-// 注意我们这里需要修改一下User的构造函数，如果不去修改。反射是不能动态创建接口的，那如果非要用接口该怎么处理呢？下一节我们讲Ioc容器的时候会去解决。
+// 注意我们这里需要修改一下User的构造函数，如果不去修改。
+//反射是不能动态创建接口的，那如果非要用接口该怎么处理呢？
+//下一节我们讲Ioc容器的时候会去解决。
 class User
 {
     protected $log;
@@ -82,6 +89,7 @@ class User
 
     public function login()
     {
+        // 登录成功，记录登录日志
         echo 'login success...' . "\n";
         $this->log->write();
     }
@@ -109,7 +117,7 @@ function getDependencies($paramteres)
 {
     $dependencies = [];
     foreach ($paramteres as $paramter) {
-
+        // 获取参数的类型提示类名称 paramter->getClass()->name
         $dependencies[] = make($paramter->getClass()->name);
     }
     return $dependencies;
