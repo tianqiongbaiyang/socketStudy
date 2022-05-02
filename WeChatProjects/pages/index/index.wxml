@@ -1,0 +1,7 @@
+<!--index.wxml-->
+<!-- <view class="container">
+  Weixin
+</view> -->
+<!-- This is our View -->
+<view class="container">Hello {{name}}!</view>
+<button bindtap="changeName">Click me!</button>
