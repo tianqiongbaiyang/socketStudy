@@ -6,6 +6,14 @@
 #define NUM_course 4	//定义符号常量课程门数为4
 #define SUM 100000 //指定符号常量SUM代表100000
 
+
+void swap(int  *x, int  *y)
+{
+	int t = *x;
+	*x = *y;
+	*y = t;
+}
+
 int main(int argc, char *argv[]) {
 	/*
 	// 输出两个整数中的最大数
@@ -867,7 +875,7 @@ printf("%d = %d + %d\n",n,p,q); //显示结果
 	printf("There are %d words in this line.\n",num);	//输出单词数
 	*/
 	
-	
+	/*
 	char str[3][20];	//定义二维字符数组
 	char string[20];	//定义一维字符数组，作为交换字符串时的临时字符数组
 	int i;
@@ -883,8 +891,13 @@ printf("%d = %d + %d\n",n,p,q); //显示结果
 	if(strcmp(str[2],string)>0)	//若str[2]大于string
 		strcpy(string,str[2]);	//把str[2]的字符串赋给字符数组string
 	printf("\nthe largest string is: \n%s\n",string);	//输出string
-		
+	*/
 	
+	//交换值	
+	int a = 10, b = 20;
+	printf("a=%d,b=%d\n", a, b);
+	swap(&a, &b);
+	printf("a=%d,b=%d\n", a, b);
 	
 	return 0;
 }
