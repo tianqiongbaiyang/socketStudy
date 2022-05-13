@@ -893,11 +893,192 @@ printf("%d = %d + %d\n",n,p,q); //显示结果
 	printf("\nthe largest string is: \n%s\n",string);	//输出string
 	*/
 	
+	/*
 	//交换值	
 	int a = 10, b = 20;
 	printf("a=%d,b=%d\n", a, b);
 	swap(&a, &b);
 	printf("a=%d,b=%d\n", a, b);
+	*/
+	
+	/*
+	//由小到大输出
+	int t,a,b,c,d;
+	printf("请输入4个数：");
+	scanf("%d,%d,%d,%d",&a,&b,&c,&d);
+	
+	if(a>b){
+		t=a;a=b;b=t;
+	}
+	if(a>c){
+		{t=a;a=c;c=t;}
+	}
+	if(a>d){
+		{t=a;a=d;d=t;}
+	}
+	
+	if(b>c){
+		{t=b;b=c;c=t;}
+	}
+	if(b>d){
+		{t=b;b=d;d=t;}
+	}
+	
+	if(c>d){
+		{t=c;c=d;d=t;}
+	}
+	
+	printf("排序结果如下：\n");
+	printf("%d %d %d %d \n", a,b,c,d);
+	*/
+	
+	/*
+	//求最大公约数及最小公倍数
+	int m,n,r,p;
+	printf("enter two positive integers: ");
+	scanf("%d %d",&m,&n);
+	p=n*m;
+	while(n!=0){
+		r=m%n;
+		m=n;
+		n=r;
+	}
+	printf("最大公约数为：%d",m);
+	printf("最小公倍数为：%d",p/m);
+	*/
+	
+	/*
+	//统计字符个数
+	int a=0,b=0,c=0,d=0;
+	char s;
+	while((s=getchar())!='\n') 
+	{
+		if((s>='A' && s<='Z') ||(s>='a'&&s<='z')) {
+			a++;
+		}else if(s== ' '){
+			b++;
+		} else if(s>'0'&&s<'9'){
+			c++;
+		} else {
+			d++;
+		}
+	}
+	printf("英文字母个数：%d\n",a);
+	printf("空格个数：%d\n",b);
+	printf("数字个数：%d\n",c);
+	printf("其他字符个数：%d",d);
+	*/
+	
+	/*
+	// 求a+aa+aaa+...多项式的和
+	int a,n,i=1,sn=0,tn=0;
+	printf("a,n=:");
+	scanf("%d,%d",&a,&n);
+	
+	while(i<=n)
+	{
+		tn = tn+a; //赋值后的tn为i个a组成数的值
+		sn=sn+tn;	//赋值后的sn为多项式前i项之和
+		a=a*10;
+		++i;
+	}
+	printf("a+aa+aaa+...=%d\n",sn);
+	*/
+	
+	/*
+	//求1!+2!+3!+4!+...+20!
+	double s=0,t=1;
+	int n;
+	for(n=1;n<=20;n++)
+	{
+		t=t*n;
+		s=s+t;
+	}
+	printf("1!+2!+...+20!=%22.15e\n",s);
+	*/
+	
+	/*
+	//求各位数字立方和等于该数本身的三位数
+	int i,hundred,ten,indi;
+	for(i=100;i<1000;i++)
+	{
+		hundred = i/100;
+		ten = (i-hundred*100)/10;
+		indi = i%10;
+		if(i==hundred*hundred*hundred+ten*ten*ten+indi*indi*indi){
+			printf("%d\n",i);
+		}
+		
+	}
+	*/
+	
+	/*
+	int n1=100,n2=50,n3=10;
+	double k,s1=0,s2=0,s3=0;
+	
+	for(k=1;k<=n1;k++)	//计算1～100的和
+	{
+		s1=s1+k;
+	}
+	for(k=1;k<=n2;k++)	//计算1～50各数的平方和
+	{
+		s2=s2+k*k;
+	}
+	for(k=1;k<=n3;k++)	//计算1～10的各倒数和
+	{
+		s3=s3+1/k;
+	}
+	printf("sum=%15.6f\n",s1+s2+s3);
+	*/
+	
+	/*
+	int i;
+	double a=2,b=1,s=0,t;
+	for(i=1;i<=20;i++)
+	{
+		s += a/b;
+		t=a;
+		a=a+b;
+		b=t;
+	}
+	printf("sum=%16.10f\n",s);
+	*/
+	
+	/*
+	double sn=100,hn=sn/2;
+	int n;
+	for(n=2;n<=10;n++)
+	{
+		sn=sn+2*hn; //第n次落地时共经过的米数
+		hn=hn/2;	//第n次反跳高度
+	}
+	printf("第10次落地时共经过%f米\n",sn);
+	printf("第10次反弹%f米\n",hn);
+	*/
+	
+	/*
+	int day,x1,x2;
+	day=9;
+	x2=1;
+	while(day>0)
+	{
+		x1=(x2+1)*2;	//第1天的桃子数是第2天桃子数加1后的2倍
+		x2=x1;
+		day--;
+	}
+	printf("total=%d\n",x1);
+	*/
+	
+	//求3x3矩阵对角线元素和
+	int a[3][3],sum=0,i,j;
+	printf("enter data: \n");
+	
+	for(i=0;i<3;i++)
+		for(j=0;j<3;j++)
+			scanf("%3d",&a[i][j]);
+	for(i=0;i<3;i++)
+		sum=sum+a[i][i];
+	printf("sum=%6d\n",sum);
 	
 	return 0;
 }
