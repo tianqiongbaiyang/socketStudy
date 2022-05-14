@@ -5,7 +5,7 @@
 #define NUM_std 5	//定义符号常量学生人数为5
 #define NUM_course 4	//定义符号常量课程门数为4
 #define SUM 100000 //指定符号常量SUM代表100000
-
+#define N 5
 
 void swap(int  *x, int  *y)
 {
@@ -1069,6 +1069,7 @@ printf("%d = %d + %d\n",n,p,q); //显示结果
 	printf("total=%d\n",x1);
 	*/
 	
+	/*
 	//求3x3矩阵对角线元素和
 	int a[3][3],sum=0,i,j;
 	printf("enter data: \n");
@@ -1079,6 +1080,190 @@ printf("%d = %d + %d\n",n,p,q); //显示结果
 	for(i=0;i<3;i++)
 		sum=sum+a[i][i];
 	printf("sum=%6d\n",sum);
+	*/
+	
+	/*
+	int a[N],i,temp;
+	printf("enter array a: \n");
+	for(i=0;i<N;i++)
+		scanf("%d",&a[i]);
+	
+	for(i=0;i<N/2;i++)	//循环的作用是将对称的元素的值互换
+	{
+		temp=a[i];
+		a[i] = a[N-i-1];
+		a[N-i-1] = temp;
+	}
+	
+	printf("\nNow,array a:\n");
+	for(i=0;i<N;i++)
+		printf("%d ",a[i]);
+	*/
+	
+	/*
+	int i,j,upp=0,low=0,dig=0,spa=0,oth=0;
+	char text[3][80];
+	
+	for(i=0;i<3;i++)
+	{
+		printf("please input line %d:\n",i+1);
+		gets(text[i]);
+		
+		for(j=0;j<80;j++)
+		{
+			//遇到结束符号代表该行数据已读完
+			if(text[i][j] == '\0') break;
+			
+			if(text[i][j]>='A'&&text[i][j]<='Z')
+				upp++;
+			else if(text[i][j]>='a'&&text[i][j]<='z')
+				low++;
+			else if(text[i][j]>='0'&&text[i][j]<='9')
+				dig++;
+			else if(text[i][j]==' ')
+				spa++;
+			else
+				oth++;
+		}
+	}
+	
+	printf("\nupper case: %d\n",upp);
+	printf("lower case: %d\n",low);
+	printf("digit: %d\n",dig);
+	printf("space: %d\n",spa);
+	printf("other: %d\n",oth);
+	*/
+	
+	/*
+	//打印图形
+//	char a[5] = {"*****"};
+//	int i,j,k;
+//	
+//	for(i=0;i<5;i++)
+//	{
+//		for(j=0;j<=i-1;j++)
+//			printf("%c",' ');
+//		
+//	    printf("%s",a);
+//		printf("\n");	
+//	}
+	
+	char a[5]={'*','*','*','*','*'};
+	int i,j,k;
+	
+	for(i=0;i<5;i++)
+	{
+		for(j=1;j<=i;j++)
+			printf("%c", ' ');
+		
+		for(k=0;k<5;k++)
+			printf("%c",a[k]);
+		
+		printf("\n");
+	}
+	*/
+	
+	/*
+	//密文
+//	int j,n;
+//	char ch[80],tran[80];
+//	
+//	printf("input cipher code:");
+//	gets(ch);
+//	printf("\ncipher code: %s",ch);
+//	
+//	j=0;
+//	while(ch[j]!='\0')
+//	{
+//		if(ch[j]>='A'&&ch[j]<='Z')
+//			tran[j]=155-ch[j];
+//		else if(ch[j]>='a'&&ch[j]<='z')
+//		    tran[j]=219-ch[j];
+//		else 
+//			tran[j]=ch[j];
+//		j++;
+//	}
+//	
+//	n=j;
+//	printf("\norginal text:");
+//	for(j=0;j<n;j++)
+//		putchar(tran[j]);
+//	printf("\n");
+	
+	int j,n;
+	char ch[80];
+	printf("input cipher code:\n");
+	gets(ch);
+	printf("\ncipher code:%s\n",ch);
+	
+	j=0;
+	while(ch[j]!='\0')
+	{
+		if(ch[j]>='A'&&ch[j]<='Z')
+			ch[j]=155-ch[j];
+		if(ch[j]>='a'&&ch[j]<'z')
+			ch[j]=219-ch[j];
+		j++;
+	}
+	
+	n=j;
+	printf("original text:");
+//	for(j=0;j<n;j++)
+//		putchar(ch[j]);
+//	printf("\n");
+	printf("%s",ch);
+	*/
+	
+	/*
+	//strcat
+	char s1[80],s2[40];
+	int i=0,j=0;
+	
+	printf("input string1:");
+	scanf("%s",s1);
+	printf("input string2:");
+	scanf("%s",s2);
+	
+//	while(s1[i]!='\0')
+//		i++;
+	i=strlen(s1);
+	
+	while(s2[j]!='\0')
+		s1[i++]=s2[j++];
+	s1[i]='\0';
+	printf("\nThe new string is:%s\n",s1);
+	*/
+	
+	/*
+	//strcmp
+	int i,resu;
+	char s1[100],s2[100];
+	
+	printf("input string1:");
+	gets(s1);
+	printf("\ninput string2:");
+	gets(s2);
+	
+	i=0;
+	while((s1[i]==s2[i])&&(s1[i]!='\0')) i++;
+	
+	if(s1[i]=='\0'&&s2[i]=='\0')
+		resu=0;
+	else 
+		resu=s1[i]-s2[i];
+	printf("\nresult:%d.\n",resu);
+	*/
+	
+	//strcpy
+	char s1[80],s2[80];
+	int i;
+	
+	printf("input s2:");
+	scanf("%s",s2);
+	
+	for(i=0;i<=strlen(s2);i++)
+		s1[i]=s2[i];
+	printf("s1:%s\n",s1);
 	
 	return 0;
 }
