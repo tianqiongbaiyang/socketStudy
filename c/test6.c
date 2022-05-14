@@ -2,16 +2,26 @@
 #include <math.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #define NUM_std 5	//定义符号常量学生人数为5
 #define NUM_course 4	//定义符号常量课程门数为4
 #define SUM 100000 //指定符号常量SUM代表100000
 #define N 5
+void showerror(); //声明showerror函数的原型
+int sum();
 
 void swap(int  *x, int  *y)
 {
 	int t = *x;
 	*x = *y;
 	*y = t;
+}
+
+float add(float x,float y)
+{
+	float z;
+	z=x+y;
+	return (z);
 }
 
 int main(int argc, char *argv[]) {
@@ -1254,6 +1264,7 @@ printf("%d = %d + %d\n",n,p,q); //显示结果
 	printf("\nresult:%d.\n",resu);
 	*/
 	
+	/*
 	//strcpy
 	char s1[80],s2[80];
 	int i;
@@ -1264,8 +1275,130 @@ printf("%d = %d + %d\n",n,p,q); //显示结果
 	for(i=0;i<=strlen(s2);i++)
 		s1[i]=s2[i];
 	printf("s1:%s\n",s1);
+	*/
+	
+	/*
+	int a;
+	scanf("%d",&a);
+	
+	while(a<0)
+	{
+		showerror();
+		scanf("%d",&a);
+	}
+	printf("sqrt(a)=%.2f\n",sqrt(a));
+	*/
+	
+	/*
+	void showyes(void);
+	showyes();
+	*/
+	
+	/*
+	int tot;
+	tot=sum();
+	
+	if(tot==-1)
+		printf("\nnot select!\n");
+	else 
+		printf("\nthe result is: %d\n",tot);
+	*/
+	
+	/*
+	void compare(int a,int b);
+	int i=2;
+	compare(i,i++);
+	printf("i=%d\n",i);
+	*/
+	
+	/*
+	int max(int a,int b); //函数的原型声明
+	int a,b,c;
+	scanf("%d%d",&a,&b);
+	c=max(a,b);	//函数调用（a、b为实参）
+	printf("the biggest number is:%d\n",c);
+	*/
+	
+	/*
+	float a,b,c;
+	scanf("%f,%f",&a,&b);
+	c=add(a,b);
+	printf("sum is %f",c);
+	*/
+	
+	/*
+	float add2(float,float);	//函数原型声明
+	float a,b,c;
+	scanf("%f,%f",&a,&b);
+	c=add(a,b);
+	printf("sum is %f",c);
+	*/
+	
+	void mergestr(char s1[],char s2[],char s3[]);
+	
+	char str1[] = {"Hello "};
+	char str2[] = {"China!"};
+	char str3[40];
+	mergestr(str1,str2,str3);
+	printf("%s\n",str3);
 	
 	return 0;
+}
+
+void mergestr(char s1[],char s2[],char s3[])
+{
+	int i,j;
+	for(i=0;s1[i]!='\0';i++)	//将s1复制到s3中
+		s3[i]=s1[i];
+	for(j=0;s2[j]!='\0';j++)	//将s2复制到s3的后边
+		s3[i+j]=s2[j];
+	s3[i+j]='\0';
+}
+
+float add2(float x,float y)
+{
+	float z;
+	z=x+y;
+	return (z);
+}
+
+int max(int a,int b) //函数定义（a、b为形参）
+{
+	return (a>b?a:b);
+}
+
+void compare(int a,int b)
+{
+	printf("a=%d b=%d\n",a,b);
+	if(a>b)
+		printf("a>b\n");
+	else 
+		if(a==b)
+			printf("a=b\n");
+		else 
+			printf("a<b\n");
+}
+
+int sum()
+{
+	int i,tot=0;
+	char key;
+	
+	key=getchar();
+	if(key!='0'&&key!='1')
+		return (-1);
+	key = key=='0' ?2:1;
+	for(i=key;i<=100;i+=2)
+		tot+=i;
+	return (tot);
+}
+
+void showyes()
+{
+	char key;
+	if(toupper(getchar())!='Y')
+		return;
+	printf("YES!");
 }
 
 void action1(int x,int y)  //执行加法的函数
@@ -1276,4 +1409,9 @@ void action1(int x,int y)  //执行加法的函数
 void action2(int x,int y)	//执行乘法的函数
 {
 	printf("x*y=%d\n",x*y);
+}
+
+void showerror() //函数的定义，无参数无返回值
+{
+	printf("input error!\n"); //函数体，没有声明变量
 }
