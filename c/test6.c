@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <curses.h>
 #define NUM_std 5	//定义符号常量学生人数为5
 #define NUM_course 4	//定义符号常量课程门数为4
 #define SUM 100000 //指定符号常量SUM代表100000
@@ -1334,6 +1335,7 @@ printf("%d = %d + %d\n",n,p,q); //显示结果
 	printf("sum is %f",c);
 	*/
 	
+	/*
 	void mergestr(char s1[],char s2[],char s3[]);
 	
 	char str1[] = {"Hello "};
@@ -1341,8 +1343,150 @@ printf("%d = %d + %d\n",n,p,q); //显示结果
 	char str3[40];
 	mergestr(str1,str2,str3);
 	printf("%s\n",str3);
+	*/
+	
+	/*
+	void print_start();	//声明print_start函数
+	void print_message();	//声明print_message函数
+	print_start();	//调用print_start函数
+	print_message(); //print_message函数
+	print_start(); //调用print_start函数
+	*/
+	
+	/*
+	int max2(float x,float y);
+	float a,b;
+	int c;
+	scanf("%f,%f",&a,&b);
+	c=max2(a,b); 
+	printf("max is %d\n",c);
+	*/
+	
+	/*
+	//求和
+	float add3(float x,float y); //对add函数作声明
+	float a,b,c;
+	printf("Please enter a and b:"); //提示输入
+	scanf("%f,%f",&a,&b); //输入两个实数
+	c=add3(a,b); //调用add函数
+	printf("sum is %f\n",c); //输出两数之和
+	*/
+	
+	/*
+	//求最大值
+	int max4(int a,int b,int c,int d); //对max4的函数声明
+	int a,b,c,d,max;
+	printf("Please enter 4 integer numbers:"); //提示输入4个数
+	scanf("%d %d %d %d",&a,&b,&c,&d); //输入4个数
+	max=max4(a,b,c,d); //调用max4函数，得到4个数中的最大者
+	printf("max=%d\n",max); //输出4个数中的最大者
+	*/
+	
+	/*
+	int age2(int n); //对age函数的声明
+	printf("NO. 5,age:%d\n",age2(5)); //输出第5个学生的年龄
+	*/
+	
+	/*
+	int fac(int n); //fac函数声明
+	int n;
+	int y;
+	printf("input an integer number:");
+	scanf("%d",&n); //输入要求阶乘的数
+	y=fac(n);
+	printf("%d!=%d\n",n,y);
+	*/
+	
+	int max5(int x,int y); //函数声明
+	int a[10],m,n,i;
+	printf("enter 10 integer numbers:");
+	
+	for(i=0;i<10;i++) //输入10个数给a[0]~a[9]
+		scanf("%d",&a[i]);
+	printf("\n");
+	
+	for(i=1,m=a[0],n=0;i<10;i++)
+	{
+		if(max5(m,a[i])>m) //若max函数返回的值大于m
+		{
+			m=max5(m,a[i]); //max函数返回的值取代m原值
+			n=i; //把此数组元素的序号记下来，放在n中
+		}
+	}
+	printf("The largest number is %d\nit is the %dth number.\n",m,n+1);
+		
 	
 	return 0;
+}
+
+int max5(int x,int y) //定义max函数
+{
+	return(x>y?x:y); //返回x和y中的大者
+}
+
+
+int fac(int n) //定义fac函数
+{
+	int f;
+	if(n<0)
+		printf("n<0,data error!"); //n不能小于0
+	else if(n==0||n==1) //n=0或，1时，n！=1
+		f=1;
+	else 
+		f=fac(n-1)*n; //n>1时，n！=n*(n-1)!
+	return(f);
+}
+
+int age2(int n)  //定义递归函数
+{
+	int c;
+	if(n==1) //如果n等于1
+	    c=10; //年龄为10
+	else //如果n不等于1
+		c=age2(n-1)+2; //年龄是前一个学生的年龄加2（如第4个学生年龄是第3个学生年龄加2）
+	return(c);
+}
+
+int max4(int a,int b,int c, int d)  //定义max4函数
+{
+	int max3(int a,int b);  //对max3的函数声明
+	int m;
+	m=max3(a,b); //调用max3函数，得到a和b两个数中的大者，放在m中
+	m=max3(m,c); //调用max3函数，得到a,b,c 3个数中的大者，放在m中
+	m=max3(m,d); //调用max3函数，得到a,b,c,d 4个数中的大者，放在m中
+	return(m); //把m作为函数值带回到main函数
+}
+
+int max3(int a,int b) //定义max2函数
+{
+	if(a>=b)
+		return a; //若a>=b,将a作为函数返回值
+	else 
+		return b; // 若a<b,将b作为函数返回值
+}
+
+float add3(float x, float y) //定义add函数
+{
+	float z;
+	z=x+y;
+	return(z); //把变量z的值作为函数值返回
+}
+
+int max2(float x,float y)
+{
+	float z;	//z为实型变量
+	z=x>y?x:y;
+	return(z);
+}
+
+void print_start() //定义print_start函数
+{
+	printf("******************\n"); //输出一行*号
+}
+
+void print_message() //定义print_message函数
+{
+	printf("How do you do!\n"); //输出一行文字信息
 }
 
 void mergestr(char s1[],char s2[],char s3[])
