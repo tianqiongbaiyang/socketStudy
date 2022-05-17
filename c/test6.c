@@ -1397,6 +1397,7 @@ printf("%d = %d + %d\n",n,p,q); //显示结果
 	printf("%d!=%d\n",n,y);
 	*/
 	
+	/*
 	int max5(int x,int y); //函数声明
 	int a[10],m,n,i;
 	printf("enter 10 integer numbers:");
@@ -1414,9 +1415,97 @@ printf("%d = %d + %d\n",n,p,q); //显示结果
 		}
 	}
 	printf("The largest number is %d\nit is the %dth number.\n",m,n+1);
-		
+	*/
 	
+	/*
+	float average(float array[10]); //函数声明
+	float score[10],aver;
+	int i;
+	printf("input 10 scores: \n");
+	
+	for(i=0;i<10;i++)
+		scanf("%f",&score[i]);
+	printf("\n");
+	
+	aver = average(score); //调用average函数
+	printf("average score is %5.2f\n",aver);
+	*/
+	
+	/*
+	float average2(float array[],int n);
+	float score1[5]={98.5,97,91.5,60,55}; //定义长度为5的数组
+	float score2[10]={67.5,89.5,99,69.5,77,89.5,76.5,54,60,99.5}; //定义长度为10的数组
+	printf("The average of class A is %6.2f\n",average2(score1,5)); //用数组名score1和5作为实参
+	printf("The average of class B is %6.2f\n",average2(score2,10)); //用数组名score2和10作实参
+	*/
+	
+	/*
+	//选择排序
+	void sort(int array[], int n);
+	int a[10],i;
+	printf("enter array:\n");
+	
+	for(i=0;i<10;i++)
+		scanf("%d",&a[i]);
+	
+	sort(a,10); //调用sort函数，a为数组名，大小为10
+	printf("The sorted array:\n");
+	
+	for(i=0;i<10;i++)
+		printf("%d ",a[i]);
+	printf("\n");
+	*/
+	
+	int max_value(int array[][4]); //函数声明
+	int a[3][4]={{1,3,5,7},{2,4,6,8},{15,17,34,12}}; //对数组元素赋初值
+	printf("Max value is %d\n",max_value(a)); //max_value(a)为函数调用
+
+
 	return 0;
+}
+
+int max_value(int array[][4]) //函数定义
+{
+	int i,j,max;
+	max=array[0][0];
+	for(i=0;i<3;i++)
+		for(j=0;j<4;j++)
+			if(array[i][j]>max) 
+				max=array[i][j]; //把大者放在max中
+	return(max);
+}
+
+void sort(int array[],int n)
+{
+	int i,j,k,t;
+	for(i=0;i<n-1;i++)  // 先选择一个元素为最小值或最大值，设置到n-1即可，因为是跟后面数做对比，也避免j出现越界
+	{
+		k=i; //设置每次参照点的元素下标
+		for(j=i+1;j<n;j++)  //分别与后面元素做对比
+		if(array[j]<array[k]) //如果后面的小，则交换元素值
+		k=j;
+		t=array[k];array[k]=array[i];array[i]=t;
+	}
+}
+
+float average2(float array[],int n) //定义average函数，未指定形参数组长度
+{
+	int i;
+	float aver,sum=array[0];
+	for(i=1;i<n;i++)
+		sum=sum+array[i]; //累加n个学生成绩
+	aver=sum/n;
+	return(aver);
+}
+
+float average(float array[10]) //定义average函数
+{
+	int i;
+	float aver,sum=array[0];
+	for(i=1;i<10;i++)
+		sum=sum+array[i]; //累加学生成绩
+	aver=sum/10;
+	return(aver);
 }
 
 int max5(int x,int y) //定义max函数
