@@ -8,6 +8,14 @@
 #define NUM_course 4	//定义符号常量课程门数为4
 #define SUM 100000 //指定符号常量SUM代表100000
 #define N 5
+float Max=0,Min=0; //定义全局变量Max,Min
+int a=3,b=5; //a,b是全局变量
+int A; //定义外部变量
+int letter,digit,space,others;
+
+float fun(int x,int y)
+{  return (x+y);}
+
 void showerror(); //声明showerror函数的原型
 int sum();
 
@@ -1456,12 +1464,308 @@ printf("%d = %d + %d\n",n,p,q); //显示结果
 	printf("\n");
 	*/
 	
+	/*
 	int max_value(int array[][4]); //函数声明
 	int a[3][4]={{1,3,5,7},{2,4,6,8},{15,17,34,12}}; //对数组元素赋初值
 	printf("Max value is %d\n",max_value(a)); //max_value(a)为函数调用
+	*/
+	
+	/*
+	float average4(float array[],int n);
+	float ave,score[10];
+	int i;
 
+	printf("Please enter 10 scores:");
+	for(i=0;i<10;i++)
+		scanf("%f",&score[i]);
+	
+	ave=average4(score,10);
+	printf("max=%6.2f\nmin=%6.2f\naverage=%6.2f\n",Max,Min,ave);
+	*/
+	
+	/*
+	int max6(int a,int b); //函数声明。a,b是形参
+	int a=8;  //a是局部变量
+	printf("max=%d\n",max6(a,b));
+	*/
+	
+	/*
+	int a=2,b=5,c=8;
+	printf("%3.0f\n",fun((int)fun(a+c,b),a-c));
+	*/
+	
+	/*
+	//局部变量
+	int f(int); //函数声明
+	int a=2,i;  //自动局部变量
+	for(i=0;i<3;i++)
+		printf("%d\n",f(a)); //输出f(a)的值
+	*/
+	
+	/*
+	//静态局部变量
+	int fac3(int n);
+	int i;
+	for(i=1;i<=5;i++) //先后5次调用fac函数
+		printf("%d!=%d\n",i,fac3(i));  //每次计算并输出i！的值
+	*/
+	
+	/*
+	//外部变量
+	int max8();
+	extern int A,B,C; //把外部变量A,B,C的作用域扩展到从此数开始
+	printf("Please enter three integer numbers:");
+	
+	scanf("%d %d %d",&A,&B,&C); //输入3个整数给A，B，C
+	printf("max is %d\n",max8());
+	*/
+	
+	/*
+	//数组转置
+	void convert(int array[][3]);
+	int array[3][3],i,j;
+	
+	printf("input array:\n");
+	for(i=0;i<3;i++)
+		for(j=0;j<3;j++)
+			scanf("%d",&array[i][j]);
+		
+	printf("\noriginal array: \n");
+	for(i=0;i<3;i++)
+	{
+		for(j=0;j<3;j++){
+			printf("%5d",array[i][j]);
+		}
+		printf("\n");
+	}
+	
+	convert(array);
+	printf("convert array:\n");
+	for(i=0;i<3;i++)
+	{
+		for(j=0;j<3;j++){
+			printf("%5d",array[i][j]);
+		}
+		printf("\n");
+	}
+	*/
+	
+	/*
+	//字符串反序存放
+	void inverse(char str[]);
+	char str[100];
+	printf("input string:");
+	scanf("%s",str);
+	
+	inverse(str);
+	printf("inverse string:%s\n",str);
+	*/
+	
+	/*
+	//字符串连接
+	void concatenate(char string1[],char string2[],char string[]);
+	char s1[100],s2[100],s[100];
+	printf("input string1:");
+	scanf("%s",s1);
+	printf("input string2:");
+	scanf("%s",s2);
 
+	concatenate(s1, s2, s);
+	printf("\nThe new string is %s\n",s);
+	*/
+	
+	/*
+	//复制一个字符串中的元音字母到另一个字符串
+	void cpy(char[],char[]);
+	char str[80],c[80];
+	printf("input string:");
+	gets(str);
+	
+	cpy(str,c);
+	printf("The vowel letters are:%s\n",c);
+	*/
+	
+	/*
+	//数字转数字字符并以空格间隔
+	void insert(char[]);
+	char str[80];
+	printf("input four digits:");
+	scanf("%s",str);
+	insert(str);
+	*/
+	
+	/*
+	//统计字符
+	void count(char[]);
+	char text[80];
+	printf("input string:\n");
+	gets(text);
+	printf("string:");
+	puts(text);
+	
+	letter=0;
+	digit=0;
+	space=0;
+	others=0;
+	count(text);
+	printf("\nletter:%d\ndigit:%d\nspace:%d\nothers:%d\n",letter,digit,space,others);
+	*/
+	
+	//给出年、月、日，计算该日是该年的第几天
+	int sum_day(int month,int day);
+	int leap(int year);
+	int year,month,day,days;
+	
+	printf("input date(year,month,day):");
+	scanf("%d,%d,%d",&year,&month,&day);
+	printf("%d/%d/%d",year,month,day);
+	
+	days=sum_day(month,day);
+	if(leap(year)&&month>=3)
+		days=days+1;
+	printf(" is the %dth day in this year.\n",days);
+	
 	return 0;
+}
+
+int sum_day(int month,int day)
+{
+	int day_tab[13]={0,31,28,31,30,31,30,31,31,30,31,30,31};
+	int i;
+	for(i=1;i<month;i++)
+		day+=day_tab[i];
+	return(day);
+}
+
+int leap(int year)
+{
+	int leap;
+	leap=year%4==0&&year%100!=0||year%400==0;
+	return(leap);
+}
+
+void count(char str[])
+{
+	int i;
+	for(i=0;str[i]!='\0';i++)
+	{
+		if((str[i]>='a'&&str[i]<='z')||(str[i]>='A'&&str[i]<='Z'))
+			letter++;
+		else if(str[i]>='0'&&str[i]<='9')
+			digit++;
+		else if(str[i]==32)
+			space++;
+		else 
+			others++;
+	}
+}
+
+void insert(char str[])
+{
+	int i;
+	for(i=strlen(str);i>0;i--)
+	{
+		str[2*i]=str[i];
+		str[2*i-1]=' ';
+	}
+	printf("output:\n%s\n",str);
+}
+
+void cpy(char s[],char c[])
+{
+	int i,j;
+	for(i=0,j=0;s[i]!='\0';i++)
+		if(s[i]=='a'||s[i]=='A'||s[i]=='e'||s[i]=='E'||s[i]=='i'
+			||s[i]=='I'||s[i]=='o'||s[i]=='O'||s[i]=='u'||s[i]=='U')
+	    {
+			c[j]=s[i];
+			j++;
+	    }
+		c[j]='\0';
+}
+
+void concatenate(char string1[],char string2[],char string[])
+{
+	int i,j;
+	for(i=0;string1[i]!='\0';i++)
+		string[i]=string1[i];
+	for(j=0;string2[j]!='\0';j++)
+		string[i+j]=string2[j];
+	string[i+j]='\0';
+}
+
+void inverse(char str[])
+{
+	char t;
+	int i,j;
+	for(i=0,j=strlen(str);i<(strlen(str)/2);i++,j--)
+	{
+		t=str[i];
+		str[i]=str[j-1];
+		str[j-1]=t;
+	}
+}
+
+void convert(int array[][3]) //定义转置数组的函数
+{
+	int i,j,t;
+	for(i=0;i<3;i++)
+		for(j=i+1;j<3;j++)
+	    { 
+			t=array[i][j];
+			array[i][j]=array[j][i];
+			array[j][i]=t;
+	    }
+} 
+
+int A,B,C; //定义外部变量A，B，C
+int max8()
+{
+	int m;
+	m=A>B?A:B; //把A和B中的大者放在m中
+	if(C>m)
+		m=C; //将A，B，C三者中的大者放在m中
+	return(m);
+}
+
+int fac3(int n)
+{
+	static int f=1; //f保留了上次调用结束时的值
+	f=f*n; //在上次的f值的基础上再乘以n
+	return(f); //返回值f是n！的值
+}
+
+int f(int a)
+{
+	auto int b=0; //自动局部变量
+	static int c=3; //静态局部变量
+	b=b+1;
+	c=c+1;
+	return(a+b+c);
+}
+
+int max6(int a,int b) //a,b是函数形参
+{
+	int c;
+	c=a>b?a:b; //把a和b中的大者存放在c中
+	return(c);
+}
+
+float average4(float array[],int n) //定义函数，有一行参是数组
+{
+	int i;
+	float aver,sum=array[0];
+	Max=Min=array[0];
+	for(i=1;i<n;i++)
+	{
+		if(array[i]>Max) 
+			Max=array[i];
+		else if(array[i]<Min)
+			Min=array[i];
+		sum=sum+array[i];
+	}
+	aver=sum/n;
+	return(aver);
 }
 
 int max_value(int array[][4]) //函数定义
